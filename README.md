@@ -8,7 +8,7 @@ This addon is still in development and was created with Blender 3.2. (to this da
 I wanted to create a tool that simplifies my workflow to prototype creatures, no matter the expertise level.
 So far I have not seen anything that comes close. If there are similarities to a project or addon of yours, these are not intended. 
 
--- EXPLANATION
+# EXPLANATION
 
 This tool mainly uses edges to create more complex geometry. 
 Most of the magic happens in Geometry Nodes. A remesh might help to reduce complexity.
@@ -19,7 +19,7 @@ Use the seeds in the geometry nodes to scramble which limb-parts are used, this 
 This tool is not a simple 'draw stick figures, get a sick creature', it might require more than just one edge per limb to get better results. 
 Overlayering multiple edges can increase volume of limbs while keeping an interesting surface.
 
--- INTENDED WORKFLOW
+# INTENDED WORKFLOW
 
 Most of the work happens in edit mode of the creature. Extrude single verts to create spikes or fingers. Extrude them once more to make the previous edge into a limb and create a new finger segment from this point.
 Edges that have a single vert that acts as an endpoint will create fingers, talons or spikes.
@@ -37,7 +37,7 @@ This tool is mainly intended as a base for sculpting and to prototype creatures 
 As the geometry nodes create lots of overlapping meshes, you might want to use a remesh modifier to create a smoother surface and reduce artifacts.
 Once expecations are met, apply the modifiers (and perhaps keep a copy of your Creature-Edge-Setup).
 
--- CURRENT ISSUES
+# CURRENT ISSUES
 
 There are some known issues for this version. 
 
@@ -50,14 +50,14 @@ Sometimes, when extruding endpoints, the resulting endpoint might be incorrectly
 - LIMB ORIENTATION
 The limb-orientation is based on the connected vertices. Moving the edge vertices will change the rotation to some degree.
 
-- LIVE EDITING
+- LIVE EDITING PERFORMANCE
 Based on the power of your rig, you might want to stay in simple shaded for editing.
 Editing the meshes of LimbMid and LimbEnd can require more perfomance when remesh is activated. If you only want to change the limbs, perhaps consider disconnecting the final geometry nodes to skip recalculations until your changes to the Limb-Meshes are finished.
 
 - RIGGING
 This tool only creates geometry. You could use the skin modifier with reduced vertices to create a base rig.
 
-#SUGGESTIONS
+# SUGGESTIONS
 You can contact me in my discord for suggestions and troubleshooting. I am just starting with this project.
 
 Please do NOT contact me in regards to NFT-projects.
