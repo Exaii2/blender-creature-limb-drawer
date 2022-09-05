@@ -8,7 +8,7 @@ This addon is still in development and was created with Blender 3.2. (to this da
 I wanted to create a tool that simplifies my workflow to prototype creatures, no matter the expertise level.
 So far I have not seen anything that comes close. If there are similarities to a project or addon of yours, these are not intended. 
 
-#EXPLANATION
+-- EXPLANATION
 
 This tool mainly uses edges to create more complex geometry. 
 Most of the magic happens in Geometry Nodes. A remesh might help to reduce complexity.
@@ -19,7 +19,7 @@ Use the seeds in the geometry nodes to scramble which limb-parts are used, this 
 This tool is not a simple 'draw stick figures, get a sick creature', it might require more than just one edge per limb to get better results. 
 Overlayering multiple edges can increase volume of limbs while keeping an interesting surface.
 
-#INTENDED WORKFLOW
+-- INTENDED WORKFLOW
 
 Most of the work happens in edit mode of the creature. Extrude single verts to create spikes or fingers. Extrude them once more to make the previous edge into a limb and create a new finger segment from this point.
 Edges that have a single vert that acts as an endpoint will create fingers, talons or spikes.
@@ -37,14 +37,14 @@ This tool is mainly intended as a base for sculpting and to prototype creatures 
 As the geometry nodes create lots of overlapping meshes, you might want to use a remesh modifier to create a smoother surface and reduce artifacts.
 Once expecations are met, apply the modifiers (and perhaps keep a copy of your Creature-Edge-Setup).
 
-#CURRENT ISSUES
+-- CURRENT ISSUES
 
 There are some known issues for this version. 
 
 - MESH GENERATION
 Currently, every LimbMid will also create a LimbEnd inside of it. The LimbEnd is usually not visible. This might change with future versions, based on available nodes.
 
-- LIMBEND DIRECTION.
+- LIMBEND DIRECTION
 Sometimes, when extruding endpoints, the resulting endpoint might be incorrectly aligned. I have yet to find a consistent solution for this.
 
 - LIMB ORIENTATION
