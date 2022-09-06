@@ -37,24 +37,29 @@ This tool is mainly intended as a base for sculpting and to prototype creatures 
 As the geometry nodes create lots of overlapping meshes, you might want to use a remesh modifier to create a smoother surface and reduce artifacts.
 Once expecations are met, apply the modifiers (and perhaps keep a copy of your Creature-Edge-Setup).
 
-# CURRENT ISSUES
+# CURRENT ISSUES AND LIMITATIONS
 
 There are some known issues for this version. 
 
 - MESH GENERATION
+
 Currently, every LimbMid will also create a LimbEnd inside of it. The LimbEnd is usually not visible. This might change with future versions, based on available nodes.
 
 - LIMBEND DIRECTION
+
 Sometimes, when extruding endpoints, the resulting endpoint might be incorrectly aligned. I have yet to find a consistent solution for this.
 
 - LIMB ORIENTATION
+
 The limb-orientation is based on the connected vertices. Moving the edge vertices will change the rotation to some degree.
 
 - LIVE EDITING PERFORMANCE
+
 Based on the power of your rig, you might want to stay in simple shaded for editing.
 Editing the meshes of LimbMid and LimbEnd can require more perfomance when remesh is activated. If you only want to change the limbs, perhaps consider disconnecting the final geometry nodes to skip recalculations until your changes to the Limb-Meshes are finished.
 
 - RIGGING
+
 This tool only creates geometry. You could use the skin modifier with reduced vertices to create a base rig.
 
 # SUGGESTIONS
