@@ -16,7 +16,7 @@ Most of the magic happens in Geometry Nodes. A remesh might help to reduce compl
 I have created this tool to quickly prototype creatures. View it as a precursor for sculpting or perhaps creating indie type monster graphics.
 Use the seeds in the geometry nodes to scramble which limb-parts are used, this can also be used to procedural generate more creatures from one base setup.
 
-This tool is not a simple 'draw stick figures, get a sick creature', it might require more than just one edge per limb to get better results. 
+This tool is not a simple 'draw stick figures, get a sick creature'-geonodes setup (although that could work in some instances), it usually requires more than just one edge per limb to get better results. 
 Overlayering multiple edges can increase volume of limbs while keeping an interesting surface.
 
 # INTENDED WORKFLOW
@@ -26,16 +26,18 @@ Edges that have a single vert that acts as an endpoint will create fingers, talo
 
 The length of edges uses different sub-meshes. These can be changed in the geometry nodes - there are currently three limb-lengths for both LimbMiddle and LimbEnd. These feature different scalings which can be changed in the geometry nodes.
 LimbEnd: Any edge in which one vert has no other connecting edge. These can be spikes, fingers, toes and talons.
-LimbMiddle: Any edge in which the connected verts have further connected edges. These can be used for both limbs and the main body.
+LimbMiddle: Any edge in which the connected verts have further connected edges. These can be used for both limbs and the main body, when overlayered multiple times.
 
-I wanted this tool to be versatile, so I also added seeds to for each limbpart and a general seed which applies to all limbs. Change these in geometry nodes for immediate results or keyframe them and check through several iterations by using the timeline. 
+For versability, change the seeds to for each limbpart or the general seed which applies to all limbs. Change these in geometry nodes for immediate results or keyframe them and check through several iterations by using the timeline. 
 
-I use simple shading. I have tested this on a good rig, however live editing with complex shaders can lead to FPS loss. My recommedation is to stay in simple shading. The GeoNodes with the used Remesh can slow down when increasing complexity.
+I recommend use simple shading for editing. I have tested this on a good rig, however live editing with complex shaders can lead to FPS loss. The GeoNodes with the used Remesh can slow down when increasing complexity.
 
 This tool is mainly intended as a base for sculpting and to prototype creatures in a similar style. Adapt it to your needs.
 
 As the geometry nodes create lots of overlapping meshes, you might want to use a remesh modifier to create a smoother surface and reduce artifacts.
 Once expecations are met, apply the modifiers (and perhaps keep a copy of your Creature-Edge-Setup).
+
+The geometry nodes have panels of different colors. Yellow indicates usage information, orange marks nodes that can be edited for varying final results. Red panels show issues or things to watch out for.
 
 # CURRENT ISSUES AND LIMITATIONS
 
@@ -47,7 +49,8 @@ Currently, every LimbMid will also create a LimbEnd inside of it. The LimbEnd is
 
 - LIMBEND DIRECTION
 
-Sometimes, when extruding endpoints, the resulting endpoint might be incorrectly aligned. I have yet to find a consistent solution for this. Sometimes, extruding the endpoint once more can fix this.
+Sometimes, when extruding endpoints, the resulting connected endpoint might be incorrectly aligned. I have yet to find a consistent solution for this. 
+Extruding the vertex endpoint once more can fix this. Be careful when subdividing edges, this can cause the ends to flip, too.
 
 - LIMB ORIENTATION
 
@@ -56,6 +59,7 @@ The limb-orientation is based on the connected vertices. Moving the edge vertice
 - LIVE EDITING PERFORMANCE
 
 Based on the power of your rig, you might want to stay in simple shaded for editing.
+The base scene contains a deactivated remesh.
 Editing the meshes of LimbMid and LimbEnd can require more perfomance when remesh is activated. If you only want to change the limbs, perhaps consider disconnecting the final geometry nodes to skip recalculations until your changes to the Limb-Meshes are finished.
 
 - RIGGING
