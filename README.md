@@ -47,7 +47,7 @@ Currently, every LimbMid will also create a LimbEnd inside of it. The LimbEnd is
 
 - LIMBEND DIRECTION
 
-Sometimes, when extruding endpoints, the resulting endpoint might be incorrectly aligned. I have yet to find a consistent solution for this.
+Sometimes, when extruding endpoints, the resulting endpoint might be incorrectly aligned. I have yet to find a consistent solution for this. Sometimes, extruding the endpoint once more can fix this.
 
 - LIMB ORIENTATION
 
