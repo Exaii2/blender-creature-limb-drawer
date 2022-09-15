@@ -71,5 +71,5 @@ You can contact me in my discord for suggestions and troubleshooting. I am just 
 
 Please do NOT contact me in regards to NFT-projects.
 
-For my own Artworks I also use my own sets and my own shaders. These are not contained in the project files. 
-At some point I might update this with more Creature Limb Sets.
+For my artworks I also use my own creature limb set and my own shaders. These are not contained in the project files. 
+At some point I might update this with more creature limb sets.
