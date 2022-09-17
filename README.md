@@ -4,10 +4,10 @@ An blender scene that generates geometry by drawing edges. Intended for prototyp
 
 This project contains a blender scene, which consists mainly of a simple mesh containing only edges, and two collections for two different creature styles.
 
-This addon is still in development and was created with Blender 3.2. (to this date in Alpha). Previous Blender version might also work, but are not tested for the moment.
+This addon is still in development and is currently developed using Blender 3.3 LTS. Previous Blender version might also work, but were not tested.
 
-I wanted to create a tool that simplifies my workflow to prototype creatures, no matter the expertise level.
-So far I have not seen anything that comes close. If there are similarities to a project or addon of yours, these are not intended. 
+I have created this personal tool to simplify my workflow for prototyping creatures. On top of that, I wanted the tool to be intuitive, usable no matter the blender expertise, so that others could use it too.
+It could be compared to and edge-based kitbashing. I have not seen any similar project so far. If there are similarities to a project or addon of yours, these are not intended. 
 
 !--HEADER PICTURE
 
@@ -24,15 +24,20 @@ Overlayering multiple edges can increase volume of limbs while keeping an intere
 
 # INTENDED WORKFLOW
 
-Most of the work happens in edit mode of the creature. Extrude single verts to create spikes or fingers. Extrude them once more to make the previous edge into a non-tip limb and create a new finger segment with the extruded vertice.
-Edges that have a single vert that acts as an endpoint will create fingers, talons or spikes.
+In the scene you have both a collection for 'LimbParts' and an Object called 'Control Structure'.
+Most of the work happens in edit mode in the control structure. 
+Extrude single verts to create spikes or fingers. Extrude them once more to make the previous edge into a non-tip limb and create a new finger segment with the extruded vertice. 
 
-The length of edges uses different sub-meshes. These can be changed in the geometry nodes - there are currently three limb-lengths for both LimbMiddle and LimbEnd. These feature different scalings which can be changed in the geometry nodes.
-LimbEnd: Any edge in which one vert has no other connecting edge. These can be spikes, fingers, toes and talons.
+LimbParts describe the SubMeshs that are instanciated upon your edge control structure.
+The length of edges uses different sub-meshes, which I call LimbParts. These can be changed in the geometry nodes - there are currently three limb-lengths for both LimbMiddle and LimbEnd. These feature different scalings which can be changed in the geometry nodes.
+LimbEnd: Any edge in which one vert has no other connecting edge. These usually are spikes, fingers, toes and talons.
 LimbMiddle: Any edge in which the connected verts have further connected edges. These can be used for both limbs and the main body, when overlayered multiple times.
+In the scene there are corresponding collections for LimbEnd and LimbMid, sometimes containing more than one Mesh. 
+Which mesh is used is based upon seeds in the Geometry Nodes. If you do not want to use randomized LimbParts, the easiest way would be to clear the corresponding collection of unwanted LimbParts. 
 
 !--LIMBMID / LIMBEND EXPLANATION HERE
 
+If you want to test different randomized LimbParts, change the seeds instead. This requires the corresponding collection to have more than one mesh under it, of course.
 For versability, change the seeds to for each limbpart or the general seed which applies to all limbs. Change these in geometry nodes for immediate results or keyframe them and check through several iterations by using the timeline. 
 
 !--SEEDS IN GEONODES
@@ -46,6 +51,8 @@ Once expecations are met, apply the modifiers (and perhaps keep a copy of your C
 
 The geometry nodes have panels of different colors. Yellow indicates usage information, orange marks nodes that can be edited for varying final results. Red panels show issues or things to watch out for.
 
+When finishing the limbs of your creation, you can also use the remesh modifier to reduce complexity. To my experience, voxel-based remesh tends to have smoothest results - you can also try to use Sharp with an level of about 8 and uncheck the 'remove disconnected' - this can create more worn-down results, especially at parts where the LimbParts overlap.
+
 # CURRENT ISSUES AND LIMITATIONS
 
 There are some known issues for this version. 
@@ -58,8 +65,9 @@ Currently, every LimbMid will also create a LimbEnd inside of it. The LimbEnd is
 - LIMBEND DIRECTION
 
 Sometimes, when extruding endpoints, the resulting connected endpoint might be incorrectly aligned. I have yet to find a consistent solution for this. 
-Be careful when subdividing edges, this can cause the ends to flip, too. 
-Extruding the vertex endpoint once or twice more can fix this.
+Be careful when subdividing edges, this can cause the ends to flip, too. Deleting endpoint vertices might cause Unity to wrongfully update endpoints. 
+
+Extruding the vertex endpoint once (or sometimes twice) can usually fix most LimEnd issues.
 
 The optimal way of creating LimbEnds by my experience:
 !--ENDPOINT DIRECTIONAL ISSUE
