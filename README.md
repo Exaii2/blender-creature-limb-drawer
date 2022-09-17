@@ -37,10 +37,12 @@ Which mesh is used is based upon seeds in the Geometry Nodes. If you do not want
 
 !--LIMBMID / LIMBEND EXPLANATION HERE
 
+
 If you want to test different randomized LimbParts, change the seeds instead. This requires the corresponding collection to have more than one mesh under it, of course.
 For versability, change the seeds to for each limbpart or the general seed which applies to all limbs. Change these in geometry nodes for immediate results or keyframe them and check through several iterations by using the timeline. 
 
 !--SEEDS IN GEONODES
+Seeds in GeoNodes are marked with the color [COLOR].
 
 I recommend use simple shading for editing. I have tested this on a good rig, however live editing with complex shaders can lead to FPS loss. The GeoNodes with the used Remesh can slow down when increasing complexity.
 
@@ -60,7 +62,9 @@ There are some known issues for this version.
 - MESH GENERATION
 
 Currently, every LimbMid will also create a LimbEnd inside of it. The LimbEnd is usually not visible. This might change with future versions, based on available nodes.
+
 !--LIMBENDS IN LIMBMIDS
+
 
 - LIMBEND DIRECTION
 
