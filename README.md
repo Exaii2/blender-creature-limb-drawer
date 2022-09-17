@@ -1,5 +1,6 @@
-# Creature-Limb-Drawer-Addon
-An addon that generates geometry by drawing edges. Intended for prototyping creatures or preparing sculpts.
+# BLENDER-Creature-Limb-Drawer
+
+An blender scene that generates geometry by drawing edges. Intended for prototyping creatures or preparing sculpts.
 
 This project contains a blender scene, which consists mainly of a simple mesh containing only edges, and two collections for two different creature styles.
 
@@ -7,6 +8,8 @@ This addon is still in development and was created with Blender 3.2. (to this da
 
 I wanted to create a tool that simplifies my workflow to prototype creatures, no matter the expertise level.
 So far I have not seen anything that comes close. If there are similarities to a project or addon of yours, these are not intended. 
+
+!--HEADER PICTURE
 
 # EXPLANATION
 
@@ -21,14 +24,18 @@ Overlayering multiple edges can increase volume of limbs while keeping an intere
 
 # INTENDED WORKFLOW
 
-Most of the work happens in edit mode of the creature. Extrude single verts to create spikes or fingers. Extrude them once more to make the previous edge into a limb and create a new finger segment from this point.
+Most of the work happens in edit mode of the creature. Extrude single verts to create spikes or fingers. Extrude them once more to make the previous edge into a non-tip limb and create a new finger segment with the extruded vertice.
 Edges that have a single vert that acts as an endpoint will create fingers, talons or spikes.
 
 The length of edges uses different sub-meshes. These can be changed in the geometry nodes - there are currently three limb-lengths for both LimbMiddle and LimbEnd. These feature different scalings which can be changed in the geometry nodes.
 LimbEnd: Any edge in which one vert has no other connecting edge. These can be spikes, fingers, toes and talons.
 LimbMiddle: Any edge in which the connected verts have further connected edges. These can be used for both limbs and the main body, when overlayered multiple times.
 
+!--LIMBMID / LIMBEND EXPLANATION HERE
+
 For versability, change the seeds to for each limbpart or the general seed which applies to all limbs. Change these in geometry nodes for immediate results or keyframe them and check through several iterations by using the timeline. 
+
+!--SEEDS IN GEONODES
 
 I recommend use simple shading for editing. I have tested this on a good rig, however live editing with complex shaders can lead to FPS loss. The GeoNodes with the used Remesh can slow down when increasing complexity.
 
@@ -46,11 +53,16 @@ There are some known issues for this version.
 - MESH GENERATION
 
 Currently, every LimbMid will also create a LimbEnd inside of it. The LimbEnd is usually not visible. This might change with future versions, based on available nodes.
+!--LIMBENDS IN LIMBMIDS
 
 - LIMBEND DIRECTION
 
 Sometimes, when extruding endpoints, the resulting connected endpoint might be incorrectly aligned. I have yet to find a consistent solution for this. 
-Extruding the vertex endpoint once more can fix this. Be careful when subdividing edges, this can cause the ends to flip, too.
+Be careful when subdividing edges, this can cause the ends to flip, too. 
+Extruding the vertex endpoint once or twice more can fix this.
+
+The optimal way of creating LimbEnds by my experience:
+!--ENDPOINT DIRECTIONAL ISSUE
 
 - LIMB ORIENTATION
 
@@ -66,7 +78,7 @@ Editing the meshes of LimbMid and LimbEnd can require more perfomance when remes
 
 This tool only creates geometry. You could use the skin modifier with reduced vertices to create a base rig.
 
-# SUGGESTIONS
+# SUGGESTIONS AND FUTURE
 You can contact me in my discord for suggestions and troubleshooting. I am just starting with this project.
 
 Please do NOT contact me in regards to NFT-projects.
