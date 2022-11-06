@@ -93,4 +93,4 @@ This tool only creates geometry. You could use the skin modifier with reduced ve
 # SUGGESTIONS AND FUTURE
 You can contact me in my discord (https://discord.gg/BJr6rT3Cer) for suggestions and troubleshooting. I am just starting with this project.
 
-At some point I might update this with more creature limb sets.
+At some point I might update this with more creature limb sets, maybe add an script to automatically set the collections via a master node.
