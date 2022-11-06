@@ -66,7 +66,7 @@ Currently, every LimbMid will also create a LimbEnd inside of it. The LimbEnd is
 !--LIMBENDS IN LIMBMIDS
 
 
-- LIMBEND DIRECTION
+- LIMBEND ORIENTATION
 
 Sometimes, when extruding endpoints, the resulting connected endpoint might be incorrectly aligned. I have yet to find a consistent solution for this. 
 Be careful when subdividing edges, this can cause the ends to flip, too. Deleting endpoint vertices might cause Unity to wrongfully update endpoints. 
@@ -76,7 +76,7 @@ Extruding the vertex endpoint once (or sometimes twice) can usually fix most Lim
 The optimal way of creating LimbEnds by my experience:
 !--ENDPOINT DIRECTIONAL ISSUE
 
-- LIMB ORIENTATION
+- LIMB ROTATION
 
 The limb-orientation is based on the connected vertices. Moving the edge vertices will change the rotation to some degree.
 
@@ -91,9 +91,6 @@ Editing the meshes of LimbMid and LimbEnd can require more perfomance when remes
 This tool only creates geometry. You could use the skin modifier with reduced vertices to create a base rig.
 
 # SUGGESTIONS AND FUTURE
-You can contact me in my discord for suggestions and troubleshooting. I am just starting with this project.
+You can contact me in my discord (https://discord.gg/BJr6rT3Cer) for suggestions and troubleshooting. I am just starting with this project.
 
-Please do NOT contact me in regards to NFT-projects.
-
-For my artworks I also use my own creature limb set and my own shaders. These are not contained in the project files. 
 At some point I might update this with more creature limb sets.
