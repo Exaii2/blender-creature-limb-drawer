@@ -55,13 +55,23 @@ The geometry nodes have panels of different colors. Yellow indicates usage infor
 
 When finishing the limbs of your creation, you can also use the remesh modifier to reduce complexity. To my experience, voxel-based remesh tends to have smoothest results - you can also try to use Sharp with an level of about 8 and uncheck the 'remove disconnected' - this can create more worn-down results, especially at parts where the LimbParts overlap.
 
+# CONTENT
+
+This scene currently contains two different style of limbs: more technical and block-y mecha limbs, and the insect-like organic limbs.
+
+Each can be used by setting the respective GeometryNodes modifier to the geometry.
+The geometry nodes are basically the same, except for the used collections for the LimbParts. Currently, these can be swapped manually only.
+
+These base meshes are found in the respective collections. These meshes have only few detail.
+You can drag the meshes into other parts of the collections. Having multiple meshes in one of these collection will lead to randomized LimbParts.
+
 # CURRENT ISSUES AND LIMITATIONS
 
 There are some known issues for this version. 
 
 - MESH GENERATION
 
-Currently, every LimbMid will also create a LimbEnd inside of it. The LimbEnd is usually not visible. This might change with future versions, based on available nodes.
+Currently, every LimbMid will also create a LimbEnd inside of it. The LimbEnd is usually not visible. This might change with future versions.
 
 !--LIMBENDS IN LIMBMIDS
 
