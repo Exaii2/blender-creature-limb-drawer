@@ -8,7 +8,7 @@ This project contains a blender scene, which consists mainly of a simple mesh co
 This addon is still in development and is currently developed using Blender 3.3 LTS. Previous Blender versions might also work, but were not tested.
 
 I have created this personal tool to simplify my workflow for prototyping creatures. On top of that, I wanted the tool to be intuitive, usable no matter the blender expertise.
-It could be compared to and edge-based kitbashing, with similarities to the skin modifier.
+It could be compared to edge-based kitbashing, with similarities to the skin modifier.
 
 # EXPLANATION
 
@@ -105,7 +105,7 @@ Currently, every LimbMid will also create a LimbEnd inside of it. The LimbEnd is
 - LIMBEND ORIENTATION
 
 Sometimes, when extruding endpoints, the resulting connected endpoint might be incorrectly aligned. I have yet to find a consistent solution for this. 
-Be careful when subdividing edges, this can cause the ends to flip, too. Deleting endpoint vertices might cause Blender to wrongfully update endpoints. 
+Be careful when subdividing edges, this can cause the ends to flip, too. Deleting endpoint vertices might cause Blender to update endpoints in unexpected ways. 
 
 Extruding the vertex endpoint once (or sometimes twice) can usually fix most LimEnd issues.
 
