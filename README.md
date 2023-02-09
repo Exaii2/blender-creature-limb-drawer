@@ -89,8 +89,8 @@ This scene currently contains two different style of limbs: more technical and b
 
 Each can be used by setting the respective GeometryNodes modifier to one of the creature generator styles.
 
-The geometry node setup are the same, except for the used collections for the LimbParts and some values for scaling. Currently, the used collections can be swapped manually only.
-The control structure meshes have a simple ambient occlusion based material.
+The geometry node setup are the same, except for the used collections for the LimbParts, the final material and some values for scaling. Currently, the used collections can be swapped manually only in the geometry nodes. You can skip the 'set material'-node, near the end of the geometry node setup.
+The control structure meshes have a simple ambient occlusion based material. This requires rendering in cycles.
 
 These base meshes are found in the respective collections. These meshes have only few detail.
 You can drag the meshes into other parts of the collections. Having multiple meshes in one of these collection will lead to randomized LimbParts.
