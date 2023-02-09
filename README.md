@@ -40,24 +40,14 @@ Extrude single verts to create spikes or fingers. Extrude them once more to make
 
 LimbParts describe the SubMeshs that are instanciated upon your edge control structure.
 The length of edges uses different sub-meshes, which I call LimbParts. These can be changed in the geometry nodes - there are currently three limb-lengths for both LimbMiddle and LimbEnd. These feature different scalings which can be changed in the geometry nodes.
+
 LimbEnd: Any edge in which one vert has no other connecting edge. These usually are spikes, fingers, toes and talons.
+
 LimbMiddle: Any edge in which the connected verts have further connected edges. These can be used for both limbs and the main body, when overlayered multiple times.
+
 In the scene there are corresponding collections for LimbEnd and LimbMid, sometimes containing more than one Mesh. 
 Which mesh is used is based upon seeds in the Geometry Nodes. 
 If you do not want to use randomized LimbParts, you can just clear the corresponding collection of unwanted LimbParts. If a LimbPart-collection is empty, the corresponding limb will not be instanciated.
-If you want to test different randomized LimbParts, you can change the corresponding seed in the geometry nodes instead. 
-For versability, change the seeds to for each limbpart or the general seed which applies to all limbs. Change these in geometry nodes for immediate results or keyframe them and check through several iterations by using the timeline. 
-
-![LimbPoint_Randomize](https://user-images.githubusercontent.com/18192380/217842118-998672d0-92cf-4e3f-8da9-4df2ff4f619a.png)
-
-Also, you can adjust some scaling for the instanciated creature limbs.
-
-![LimbPoint_1](https://user-images.githubusercontent.com/18192380/217843290-3f5399d3-efb9-4972-97b6-24150785dd69.png)
-
-In the LimbEnd/LimbMid Value frame, you can adjust the map-range node to modify the size for this limb-type.
-You can also change at the edge-length corresponding to certain limb-collections.
-
-![LimbPoint_LengthValues](https://user-images.githubusercontent.com/18192380/217843809-90a0e588-6181-4e16-bf66-335f83cc7c94.png)
 
 # INTENDED WORKFLOW - Segments
 
@@ -65,17 +55,34 @@ You can also change at the edge-length corresponding to certain limb-collections
 
 Segments are small meshes in the MidPart- and EndPart-collection. They are low-polygonal structures with a mirror-modifier. Adjust these for different results. Note that the vertices are adjusted along the y-axis, -0.5 and 0.5 on the y-axis describe the from and to when instanciated by the goemetry nodes.
 
-Note, that the complexity of the control structure mesh can, based on your rig, take up performance when live-editing, especially when using the remesh-modifier.
-I recommend use simple shading for editing.
+The complexity of the control structure mesh can, based on your rig, take up performance when live-editing. Especially when using the remesh-modifier.
+Use simple shading for editing if performance is a problem.
 
-This tool is mainly intended as a base for sculpting and to prototype creatures in a similar style. Adapt it to your needs.
-As the geometry nodes create lots of clipping meshes, you might want to use a remesh modifier to create a smoother surface. Apply when attempting to bake.
+This tool is mainly intended as a base for sculpting and to prototype creatures in a similar style. Adapt it and the parts here to your needs.
+
+# INTENDED WORKFLOW - Geometry nodes
 
 The geometry nodes have panels of different colors. Yellow indicates usage information, orange marks nodes that can be edited for varying final results. Red panels show issues or things to watch out for.
 
 ![Geometry Nodes Information](https://user-images.githubusercontent.com/18192380/217843049-99a5eee2-2ddf-4f22-8b65-5014348b37e3.png)
 
-When finishing the limbs of your creation, you can also use the remesh modifier to reduce complexity. To my experience, voxel-based remesh tends to have smoothest results - you can also try to use Sharp with an level of about 8 and uncheck the 'remove disconnected' - this can create more worn-down results, especially at parts where the LimbParts overlap.
+If you want to test different randomized LimbParts, you can change the corresponding seed in the geometry nodes instead. 
+For versability, change the seeds to for each limbpart or the general seed which applies to all limbs. Change these in geometry nodes for immediate results or keyframe them and check through several iterations by using the timeline. 
+
+![LimbPoint_Randomize](https://user-images.githubusercontent.com/18192380/217842118-998672d0-92cf-4e3f-8da9-4df2ff4f619a.png)
+
+Also, you can adjust some scaling for the instanciated creature limbs.
+In the LimbEnd/LimbMid Value frame, you can adjust the map-range node to modify the scaling for this limb-type.
+
+![LimbPoint_1](https://user-images.githubusercontent.com/18192380/217843290-3f5399d3-efb9-4972-97b6-24150785dd69.png)
+
+You can also change at the edge-length corresponding to certain limb-collections.
+
+![LimbPoint_LengthValues](https://user-images.githubusercontent.com/18192380/217843809-90a0e588-6181-4e16-bf66-335f83cc7c94.png)
+
+As the geometry nodes create lots of clipping meshes, one can also use the remesh modifier to reduce complexity. Applying a remesh modifier after the geometry nodes modifier on the control structure will create a smoother surface. Apply in order when you want to generate UVs or bake texture.
+By my experience, voxel-based remesh tends to have smoothest results - you can also try to use Sharp with an level of about 8 and uncheck the 'remove disconnected' - this can create more worn-down results, especially at parts where the LimbParts overlap. 
+Save your progress regularily. 
 
 # CONTENT
 
@@ -93,7 +100,7 @@ There are some known issues for this version.
 
 - MESH GENERATION
 
-Currently, every LimbMid will also create a LimbEnd inside of it. The LimbEnd is usually not visible. This might change with future versions.
+Currently, every LimbMid will also create a LimbEnd inside of it. The LimbEnd is usually not visible. This might change with future versions, but can also create more randomness in placed parts.
 
 !--LIMBENDS IN LIMBMIDS
 
