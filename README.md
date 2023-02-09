@@ -124,6 +124,6 @@ Editing the meshes of LimbMid and LimbEnd can require more perfomance when remes
 This tool only creates instanced geometry. Applying the modifiers of the control structure is recommended. You could use the skin modifier on the control structure with reduced vertices to create a base rig. 
 
 # SUGGESTIONS AND FUTURE
-You can contact me in my discord (https://discord.gg/BJr6rT3Cer) for suggestions, troubleshooting and/or creations. 
+You can contact me in my discord server (https://discord.gg/BJr6rT3Cer) for suggestions, troubleshooting and/or creations! 
 
 At some point I might update this with more creature limb sets, maybe add an script to automatically set the collections via a master node.
