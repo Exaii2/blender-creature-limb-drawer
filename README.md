@@ -10,8 +10,6 @@ This addon is still in development and is currently developed using Blender 3.3 
 I have created this personal tool to simplify my workflow for prototyping creatures. On top of that, I wanted the tool to be intuitive, usable no matter the blender expertise, so that others could use it too.
 It could be compared to and edge-based kitbashing. I have not seen any similar project so far. If there are similarities to a project or addon of yours, these are not intended. 
 
-!--HEADER PICTURE
-
 # EXPLANATION
 
 This tool mainly uses edges to create more complex geometry, similar to the skin-modifier.
@@ -41,9 +39,9 @@ Extrude single verts to create spikes or fingers. Extrude them once more to make
 LimbParts describe the SubMeshs that are instanciated upon your edge control structure.
 The length of edges uses different sub-meshes, which I call LimbParts. These can be changed in the geometry nodes - there are currently three limb-lengths for both LimbMiddle and LimbEnd. These feature different scalings which can be changed in the geometry nodes.
 
-LimbEnd: Any edge in which one vert has no other connecting edge. These usually are spikes, fingers, toes and talons.
+- LimbEnd: Any edge in which one vert has no other connecting edge. These usually are spikes, fingers, toes and talons.
 
-LimbMiddle: Any edge in which the connected verts have further connected edges. These can be used for both limbs and the main body, when overlayered multiple times.
+- LimbMiddle: Any edge in which the connected verts have further connected edges. These can be used for both limbs and the main body, when overlayered multiple times.
 
 In the scene there are corresponding collections for LimbEnd and LimbMid, sometimes containing more than one Mesh. 
 Which mesh is used is based upon seeds in the Geometry Nodes. 
@@ -76,12 +74,13 @@ In the LimbEnd/LimbMid Value frame, you can adjust the map-range node to modify 
 
 ![LimbPoint_1](https://user-images.githubusercontent.com/18192380/217843290-3f5399d3-efb9-4972-97b6-24150785dd69.png)
 
-You can also change at the edge-length corresponding to certain limb-collections.
+You can also change at the edge-length corresponding to certain limb-collections. The current edge-lengths are not adjusted for small-scale modelling. Scaling your control structure and applying the scaling will cause the geometry instances to update.
 
 ![LimbPoint_LengthValues](https://user-images.githubusercontent.com/18192380/217843809-90a0e588-6181-4e16-bf66-335f83cc7c94.png)
 
 As the geometry nodes create lots of clipping meshes, one can also use the remesh modifier to reduce complexity. Applying a remesh modifier after the geometry nodes modifier on the control structure will create a smoother surface. Apply in order when you want to generate UVs or bake texture.
 By my experience, voxel-based remesh tends to have smoothest results - you can also try to use Sharp with an level of about 8 and uncheck the 'remove disconnected' - this can create more worn-down results, especially at parts where the LimbParts overlap. 
+
 Save your progress regularily. 
 
 # CONTENT
@@ -90,6 +89,7 @@ This scene currently contains two different style of limbs: more technical and b
 
 Each can be used by setting the respective GeometryNodes modifier to the geometry.
 The geometry nodes are basically the same, except for the used collections for the LimbParts. Currently, these can be swapped manually only.
+The control structure meshes have a simple ambient occlusion based material.
 
 These base meshes are found in the respective collections. These meshes have only few detail.
 You can drag the meshes into other parts of the collections. Having multiple meshes in one of these collection will lead to randomized LimbParts.
