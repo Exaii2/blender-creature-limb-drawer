@@ -102,16 +102,12 @@ There are some known issues for this version.
 
 Currently, every LimbMid will also create a LimbEnd inside of it. The LimbEnd is usually not visible. This might change with future versions, but can also create more randomness in placed parts.
 
-!--LIMBENDS IN LIMBMIDS
-
 - LIMBEND ORIENTATION
 
 Sometimes, when extruding endpoints, the resulting connected endpoint might be incorrectly aligned. I have yet to find a consistent solution for this. 
 Be careful when subdividing edges, this can cause the ends to flip, too. Deleting endpoint vertices might cause Blender to wrongfully update endpoints. 
 
 Extruding the vertex endpoint once (or sometimes twice) can usually fix most LimEnd issues.
-
-!--ENDPOINT DIRECTIONAL ISSUE
 
 - LIMB ROTATION
 
