@@ -8,7 +8,7 @@ This project contains a blender scene, which consists mainly of a simple mesh co
 This addon is still in development and is currently developed using Blender 3.3 LTS. Previous Blender version might also work, but were not tested.
 
 I have created this personal tool to simplify my workflow for prototyping creatures. On top of that, I wanted the tool to be intuitive, usable no matter the blender expertise, so that others could use it too.
-It could be compared to and edge-based kitbashing. I have not seen any similar project so far.
+It could be compared to and edge-based kitbashing, with similarities to the skin modifier.
 
 # EXPLANATION
 
