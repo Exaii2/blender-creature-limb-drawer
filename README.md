@@ -1,7 +1,7 @@
 # BLENDER-Creature-Limb-Drawer
 ![Limbdrawer_Header](https://user-images.githubusercontent.com/18192380/217829911-5eef2db8-1471-43b6-9941-7378dec11d2a.png)
 
-An blender scene that generates geometry by drawing edges. Intended for prototyping creatures or preparing sculpts.
+A setup of geometry nodes and meshes, intended for prototyping creatures or preparing sculpts.
 
 This project contains a blender scene, which consists mainly of a simple mesh containing only edges, and two collections for two different creature styles.
 
@@ -85,10 +85,11 @@ Save your progress regularily.
 
 # CONTENT
 
-This scene currently contains two different style of limbs: more technical and blocky mecha limbs, and the insect-like organic limbs.
+This scene currently contains two different style of limbs: more technical and blocky mecha limbs, and the insect-like organic limbs. The mech-limbs are hidden.
 
-Each can be used by setting the respective GeometryNodes modifier to the geometry.
-The geometry nodes are basically the same, except for the used collections for the LimbParts. Currently, these can be swapped manually only.
+Each can be used by setting the respective GeometryNodes modifier to one of the creature generator styles.
+
+The geometry node setup are the same, except for the used collections for the LimbParts and some values for scaling. Currently, the used collections can be swapped manually only.
 The control structure meshes have a simple ambient occlusion based material.
 
 These base meshes are found in the respective collections. These meshes have only few detail.
