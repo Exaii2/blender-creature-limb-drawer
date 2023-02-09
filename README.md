@@ -5,9 +5,9 @@ An blender scene that generates geometry by drawing edges. Intended for prototyp
 
 This project contains a blender scene, which consists mainly of a simple mesh containing only edges, and two collections for two different creature styles.
 
-This addon is still in development and is currently developed using Blender 3.3 LTS. Previous Blender version might also work, but were not tested.
+This addon is still in development and is currently developed using Blender 3.3 LTS. Previous Blender versions might also work, but were not tested.
 
-I have created this personal tool to simplify my workflow for prototyping creatures. On top of that, I wanted the tool to be intuitive, usable no matter the blender expertise, so that others could use it too.
+I have created this personal tool to simplify my workflow for prototyping creatures. On top of that, I wanted the tool to be intuitive, usable no matter the blender expertise.
 It could be compared to and edge-based kitbashing, with similarities to the skin modifier.
 
 # EXPLANATION
@@ -124,6 +124,6 @@ Editing the meshes of LimbMid and LimbEnd can require more perfomance when remes
 This tool only creates instanced geometry. Applying the modifiers of the control structure is recommended. You could use the skin modifier on the control structure with reduced vertices to create a base rig. 
 
 # SUGGESTIONS AND FUTURE
-You can contact me in my discord (https://discord.gg/BJr6rT3Cer) for suggestions and troubleshooting. 
+You can contact me in my discord (https://discord.gg/BJr6rT3Cer) for suggestions, troubleshooting and/or creations. 
 
 At some point I might update this with more creature limb sets, maybe add an script to automatically set the collections via a master node.
