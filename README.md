@@ -8,7 +8,7 @@ This project contains a blender scene, which consists mainly of a simple mesh co
 This addon is still in development and is currently developed using Blender 3.3 LTS. Previous Blender version might also work, but were not tested.
 
 I have created this personal tool to simplify my workflow for prototyping creatures. On top of that, I wanted the tool to be intuitive, usable no matter the blender expertise, so that others could use it too.
-It could be compared to and edge-based kitbashing. I have not seen any similar project so far. If there are similarities to a project or addon of yours, these are not intended. 
+It could be compared to and edge-based kitbashing. I have not seen any similar project so far.
 
 # EXPLANATION
 
@@ -115,7 +115,7 @@ Extruding the vertex endpoint once (or sometimes twice) can usually fix most Lim
 
 - LIMB ROTATION
 
-The limb-orientation is based on the connected vertices. Moving the edge vertices will change the rotation to some degree. This is an trade off for accessability.
+The limb-orientation is based on the connected vertices. Moving the edge vertices will change the rotation to some degree. When trying to have correctly rotated fingers, you might need to adjust the rotation of the entire limb. This is certainly an trade off for accessability. 
 
 - LIVE EDITING PERFORMANCE
 
@@ -125,7 +125,7 @@ Editing the meshes of LimbMid and LimbEnd can require more perfomance when remes
 
 - RIGGING
 
-This tool only creates geometry. You could use the skin modifier on the control structure with reduced vertices to create a base rig.
+This tool only creates instanced geometry. Applying the modifiers of the control structure is recommended. You could use the skin modifier on the control structure with reduced vertices to create a base rig. 
 
 # SUGGESTIONS AND FUTURE
 You can contact me in my discord (https://discord.gg/BJr6rT3Cer) for suggestions and troubleshooting. 
