@@ -5,7 +5,7 @@ An blender scene that generates geometry by drawing edges. Intended for prototyp
 
 This project contains a blender scene, which consists mainly of a simple mesh containing only edges, and two collections for two different creature styles.
 
-This addon is still in development and is currently developed using Blender 3.3 LTS. Previous Blender versions might also work, but were not tested.
+This addon is still in development and is currently developed using Blender 3.4.1. Previous Blender versions might also work, but were not tested.
 
 I have created this personal tool to simplify my workflow for prototyping creatures. On top of that, I wanted the tool to be intuitive, usable no matter the blender expertise.
 It could be compared to edge-based kitbashing, with similarities to the skin modifier.
