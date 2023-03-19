@@ -156,10 +156,10 @@ The current official styles are:
 
 Each can be used by setting the respective GeometryNodes modifier to one of the 'creature limb generator (style)'.
 
-The control structure meshes have a simple ambient occlusion based material. This requires rendering in cycles.
-Consider using a 'set material'-node, near the end of the geometry node setup.
+These control structure meshes are found in every style collection. These are duplicates and only differ in which geometry node setup is used. These meshes do not have a set material themselves.
 
-These control structure meshes are found in every style collection. These are duplicates and only differ in which geometry node setup is used.
+The instanced LimbPart-meshes have a simple ambient occlusion based material applied to them. These require rendering in cycles for correct display.
+Consider using a 'set material'-node in the GeometryNodes after the 'Generic Creature Limb Generator'-node, if you quickly want to swap out the material for the whole generated mesh.
 
 # CURRENT ISSUES AND LIMITATIONS
 
