@@ -102,7 +102,7 @@ Change these in the modifier stack for immediate results or keyframe them and ch
 - XY-Scaling
 
 The XY-scalings for small, medium and large limb-parts can also be adjusted in the GeometryNodes for that style.
-Modify the blue vector-values, which act as min-size/max-size for both EndLimbs and MidLimbs. 
+Modify the vector-values, which act as min-size/max-size for both EndLimbs and MidLimbs. X, Y and Z are affecting the XY-Scale of small, medium and large limbs, respectively.
 
 ![XYSCaling](https://user-images.githubusercontent.com/18192380/226145404-3754c575-22fe-4a12-9a0d-c88087696448.png)
 
