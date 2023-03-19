@@ -81,7 +81,7 @@ This tool is mainly intended as a base for sculpting and to prototype creatures 
 
 The GeometryNodes for the overarching styles are simplified since Version 1.08.
 
-![SimplifiedGenericLimbGenerator](https://user-images.githubusercontent.com/18192380/226146289-cb3db1fa-6e76-4752-9638-86cafee234b9.png)
+![6_SimplifiedGenericLimbGenerator](https://user-images.githubusercontent.com/18192380/226146677-98df0f86-6b5c-4f8c-a96a-684646892159.png)
 
 Image 6: Simplified NodeGroup.
 
@@ -134,6 +134,7 @@ Image 10: The marked Bool-option.
 As the geometry nodes can create clipping meshes, the remesh modifier might help to reduce complexity. 
 Applying a remesh modifier after the geometry nodes modifier on the control structure will create a smoother surface. Apply in order when you want to generate UVs or bake texture.
 By my experience, voxel-based remesh tends to have smoothest results - you can also try to use Sharp with an level of about 8 and uncheck the 'remove disconnected' - this can create more worn-down results, especially at parts where the LimbParts overlap. 
+When using a remesh, your mesh will lose the material data from the instances. When using only a single material, using an new GeoNodes-Setup with only a 'Set Material'-Node might fix this.
 
 Save your progress regularily. 
 
