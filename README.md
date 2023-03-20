@@ -83,7 +83,7 @@ The GeometryNodes for the overarching styles are simplified since Version 1.08.
 
 ![6_SimplifiedGenericLimbGenerator](https://user-images.githubusercontent.com/18192380/226146677-98df0f86-6b5c-4f8c-a96a-684646892159.png)
 
-Image 6: Simplified NodeGroup.
+Image 6: Simplified NodeGroup in GeometryNodes.
 
 Feel free to look into the groups (like Generic Creature Limb Generator) in case you want to manually adjust the behaviour of this tool.
 The 'delete geometry'-node at the beginning is there to prevent weird behaviour when using faces.
@@ -106,7 +106,7 @@ Modify the vector-values, which act as min-size/max-size for both EndLimbs and M
 
 ![XYSCaling](https://user-images.githubusercontent.com/18192380/226145404-3754c575-22fe-4a12-9a0d-c88087696448.png)
 
-Image 8: Adjustable scaling in the modifier stack.
+Image 8: Adjustable scaling in GeometryNodes.
 
 The 'XY-Scale'-Value below these four vectors can be changed to make all limbs bigger/smaller at once. Some of the styles already have a slight number adjustments, play around with these to see the effect.
 
@@ -116,7 +116,7 @@ The length at which a small limb turns into a medium or large limb is adjustable
 
 ![LimbLength](https://user-images.githubusercontent.com/18192380/226145369-f50aeccf-08af-4c19-8133-6f19f5c166a2.png)
 
-Image 9: The LimbLength-values.
+Image 9: The LimbLength-values in GeometryNodes.
 
 Note that scaling the control structure and applying the scaling will cause the geometry instances to update, which will change the overall generated mesh.
 
@@ -127,7 +127,7 @@ This effect can be re-enabled by using the Boolean 'Generate LimbEnds in LimbMid
 
 ![GenerateLimbEndsInLimbMids](https://user-images.githubusercontent.com/18192380/226145327-c13fb831-499e-41d2-a1e3-870e27c9d70d.png)
 
-Image 10: The marked Bool-option.
+Image 10: The marked Bool-option in GeometryNodes.
 
 - Polishing the mesh
 
