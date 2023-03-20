@@ -46,7 +46,7 @@ Image 3: Comparison between generated mesh and underlying control structure.
 
 # INTENDED WORKFLOW - Limbparts
 
-The prepared naming convention have changed since Version 1.08.
+The naming convention has been changed since Version 1.08.
 
 ![HierarchyNamingConvention](https://user-images.githubusercontent.com/18192380/226145454-48e0d7bb-8079-43db-b1a9-3bb03daddd2a.png)
 
