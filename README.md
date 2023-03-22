@@ -36,7 +36,7 @@ To modify one of the prepared control structure, use the edit mode and perhaps e
 
 ![X-Ray](https://user-images.githubusercontent.com/18192380/226145461-75447a42-63ff-4c66-8cdd-36820798ae5c.png)
 
-Image 2: X-Ray can help finding editing the vertices, while the style GeoNodes are active.
+Image 2: X-Ray helps while editing the vertices with the active GeoNodes-modifier.
 
 Extrude single verts to create spikes or fingers. Extrude them once more to make the previous edge into a non-tip limb and create a new finger segment with the extruded vertice. 
 
