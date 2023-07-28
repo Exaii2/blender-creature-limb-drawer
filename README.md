@@ -14,7 +14,7 @@ This project contains a blender scene, with two prepared control structures, to 
 To check out the different styles, use either shift and the numbers 1-7 in object mode to quickly enable the collections or manually enable these from the hierarchy.
 Some styles use more parts than others and thus utilize random seeds. These can be adjusted quickly from the modifier stack.
 
-This addon is developed using Blender 3.5 (since the 1.20 version). 
+This addon is developed using Blender 3.6 (since the 1.26 version). 
 Previous Blender versions might also work, but were not tested.
 For older Blender-versions, check previous commits.
 
@@ -33,6 +33,8 @@ Overlayering multiple edges can increase volume of limbs while keeping an intere
 
 The Asset Browser can be used since the update to the 1.20 version. 
 With the Asset Browser, you can drop the described effects onto any mesh you like without opening the main file. More on that at 2.4/2.5. 
+
+With the 1.26 version, limb rotation has been made more consistent.
 
 # 2.1 INTENDED WORKFLOW - Control structure
 
@@ -61,24 +63,6 @@ Image 2.1-3: Comparison between generated mesh and underlying control structure.
 ![2 1-4_CreatureLimbDrawer_Extrude](https://user-images.githubusercontent.com/18192380/236580470-9f68e4e0-c6b0-4cb9-ad0a-2999d687c493.gif)
 
 GIF 2.1-4: GIF: Extruding parts, creating limbs.
-
-- Limb orientation and indices
-
-Normally, when extruding, the limb orientation matches with the newly extruded limbs.
-However, this can mismatch when deleting or collapsing previous edges and vertices, as the the direction of a limb is based on index. Newly generated vertices will fill the indices of previous removed vertices - which can cause some hickups with the system.
-In case this happens, the direction of limbs can be changed by selecting the corresponding edge and using 'Mesh > Sort Elements... > Selected'. Favorite this function if it happens often in your workflow.
-
-![2 1-5_ChangingOrientation](https://user-images.githubusercontent.com/18192380/236580484-ce5910a2-6181-48eb-b05e-28d8c08b9c31.png)
-
-Image 2.1-5: Change the limb orientation by swapping the indices of the edge.
-
-Based on your case, you either need to swap the indices in 'Reverse' or not. See what works.
-In rare cases, swapping the index of an edge is not enough and the indices of the corresponding vertices has to be changed. 
-Use the same function, but instead use 'Edges' use 'Vertices'.
-
-![2 1-6_SortSelectionIndices](https://user-images.githubusercontent.com/18192380/236580505-dae63ffd-2129-43cb-91b5-3724887b9bf0.png)
-
-Image 2.1-6: Sort selected indices, toggle 'Reverse' to fit your needs. Normally, using 'Edge' will solve all problems, except for rare cases - use 'Vertice' instead then.
 
 - Rotational reference
 
@@ -225,6 +209,12 @@ By my experience, voxel-based remesh tends to have smoothest results - you can a
 When using a remesh, your mesh will lose the material data from the instances. When using only a single material, using an new GeoNodes-Setup with only a 'Set Material'-Node might fix this.
 
 Save your progress regularily. 
+
+# 2.7 ADVANCED WORKFLOW - Geometry Nodes
+
+With the 1.26 version, the geometry nodes can also use named attributes for rotation. 
+Other GeoNodes, that are in the modifier stack above, can set the named attribute 'LimbRot', which will then automatically overwrite the rotation target for the Limb Gen-GeoNodes.
+In the main file you can find a simple example. This can be utilized for more complex creations.
 
 # 3 CONTENT
 
