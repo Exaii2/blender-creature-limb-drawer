@@ -1,288 +1,174 @@
 # BLENDER-Creature-Limb-Drawer
 
-![0-1_Header](https://user-images.githubusercontent.com/18192380/236580383-9a9e8117-4f1f-4747-91e2-5934bd7d7653.png)
+This asset is built around a system of GeoNodes.
+The basic idea is: "draw a stick figure with vertices, get a creature".
+The current iteration is built with blender 4.2.
 
-Image 0-1: Main Header
+GIF: 1 INTRO
 
-![0-2_CreatureLimbDrawer_MainShowCase](https://user-images.githubusercontent.com/18192380/236580393-82c8cd7a-3284-4ef6-9f40-f9d5072841d9.gif)
+Screenshot: 2 OLD MAIN HEADER IMAGE
 
-GIF 0-2 : GIF: Creature Limb Drawer in Action
+The instance spawn behaviour per edge can be costumized.
+Feel free to edit the GeoNodes to your liking.
+Besides CLD, this asset also contains a 'Instances on Edge'-Node, which is a heavily reduced version of the CLD2-node graph.
 
-A setup of geometry nodes and meshes, intended for prototyping creatures or preparing sculpts.
+# 1 CLD-EXPLANATION
 
-This project contains a blender scene, with two prepared control structures, to which different styles can easily be applied.
-To check out the different styles, use either shift and the numbers 1-7 in object mode to quickly enable the collections or manually enable these from the hierarchy.
-Some styles use more parts than others and thus utilize random seeds. These can be adjusted quickly from the modifier stack.
+This tool creates randomized instances along edges. 
+Unlike the included 'Instances on Edges'-Node, the rotation and length of the edge is taken into account when spawning instances.
+The orientation ('which vert of the edge the instance will look towards') can be customized as well.
 
-This addon is developed using Blender 3.6 (since the 1.26 version). 
-Previous Blender versions might also work, but were not tested.
-For older Blender-versions, check previous commits.
+Setting one (or more) starting points (via a named vertex group) will make all connected edge-instances orient away from the starting point, allowing you to set a direction by marking single vertices. This must be done for each mesh island, or they will retain a semi-random orientation, except for the end-parts.
 
-I have created this personal tool to simplify my workflow for prototyping creatures. It could be compared to edge-based kitbashing, with similarities to the skin modifier.
+Extruding multiple edges along each other can increase the volume of the spawned limbs.
 
-# 1 EXPLANATION
+SCREENSHOT: 3 Hand example
 
-This tool uses edges to create more complex geometry, similar to the skin-modifier. Instead of projecting a cube along the edges, it will project meshes from prepared collections, the selection is based on the length of the edge.
-Most of the magic happens in Geometry Nodes. Remeshing might help to reduce complexity.
+# 2 CLD-USAGE
 
-I have created this personal setup to quickly prototype creatures. View it as a precursor for sculpting or perhaps creating indie type monster graphics.
-Use the seeds in the geometry nodes to scramble which limb-parts are used, this can also be used to procedural generate more creatures from one base setup.
+Add the CLD 2.0 GeoNode modifier to your mesh. Ideally, you should not start with a high-resolution sculpt.
+Set the collection references in the modifier. You can use the included collections of this asset or create your own.
+Ideally, the meshes in the collections should have dimensions about X=0.2, Y=1.0, Z=0.2. You can use the included 'Debug Limb' as a base.
 
-This tool is not a simple 'draw stick figures, get a sick creature'-geonodes setup (although that could work in some instances), it usually requires more than just one edge per limb to get satisfying results. 
-Overlayering multiple edges can increase volume of limbs while keeping an interesting surface.
+SCREENSHOT: 4 LIMB EXAMPLES + Dimensions.
 
-The Asset Browser can be used since the update to the 1.20 version. 
-With the Asset Browser, you can drop the described effects onto any mesh you like without opening the main file. More on that at 2.4/2.5. 
+Extrude edges or make edges between vertices. CLD 2.0 is set up, so that you will get either 'limbmids' or 'limbends', depending on the amount of connected endpoints for edges.
+'Limbends' are determined as edges, in which at least one vertice is not connected to another edge. Useful for fingers/spikes.
+'Limbmids' are edges, where both verts have at least two edges connected. Anything that is not an endpoint. If an edge endpoint is also marked as a StartingPos, it will count not count as a starting point for simple generator.
 
-With the 1.26 version, limb rotation has been made more consistent.
+SCREENSHOT: 5 Different Shapes
 
-# 2.1 INTENDED WORKFLOW - Control structure
+SCREENSHOT: 6 LimbEnds LimbMids
 
-In the scene, each style has are multiple collections for 'LimbParts' and some display meshes, here called 'Control Structure'. The infoplane is only a visual aid and can be disregarded.
+Modify the GeoNodes to your liking. 
+The simple version is built around three edge-lengths, resulting in 3 collections for 'limbmids' and 3 collections for 'limbends'. 
+Per edge, depending on length and if it is a 'limbend' or 'limbmid', exactly one instance is spawned from the associated collection pools. 
 
-![2 1-1_NamingConvention-Collections](https://user-images.githubusercontent.com/18192380/236580432-9eaba1b6-e3a4-45db-a7ab-ef07651092aa.png)
+# 2-1 Limb Orientation
 
-Image 2.1-1: Current naming convention for collections.
+Aka yaw+pitch / ('to which vertice of the edge will this instance point towards')
 
-- X-Ray
+Orientation is determined arbitrary, unless at least one of the connected vertices of the mesh island is set as a specific vertex group ('CLD Starting Pos' by default).
+Once set, all connected edge-instances will rotate towards the vertex that is furthest away from the starting point.
 
-To modify one of the prepared control structure, use the edit mode and perhaps enable X-Ray in the menu bar. 
+By using the 'CLD Starting Pos'-vertex group, you can set to which end the rest of the connected edges will rotate their instances to.
+Per mesh island, setting one (or more) vertices as the starting points will make all other limbs of that island spread out from these verts.
 
-![2 1-2_X-Ray](https://user-images.githubusercontent.com/18192380/236580451-29f494d8-23a1-4f83-a700-58a7a3a6c115.png)
+Most examples in the scene use a vertex group to orient the instances.
 
-Image 2.1-2: X-Ray helps while editing the vertices with the active GeoNodes-modifier.
+GIF: 7 Setting the Starting point to affect orientation
 
-- General usage
+# 2-2 Limb Rotation
 
-Extrude single verts to create spikes or fingers. Extrude them once more to make the previous edge into a non-tip limb and create a new finger segment with the extruded vertice. 
+Aka roll / ('how is this instance rotated around the edge')
 
-![2 1-3_LimbDrawing_Example](https://user-images.githubusercontent.com/18192380/236580457-d22a8b18-e0d2-411f-b778-a5bc68199c06.png)
+Limbs spawned will have an arbitrary roll value.
+If you want a custom rotation, you can use the provided extra modifers before using the main CLD-Modifier. These extra-modifiers can be used (and stacked) to rotate the instances towards proxy objects/geometry/at random.
 
-Image 2.1-3: Comparison between generated mesh and underlying control structure.
+Many examples in the scene use modifiers to manipulate the Limb Rotation:
+- Rotate towards target object origin
+- Rotate towards target mesh surface
+- Rotate random
 
-![2 1-4_CreatureLimbDrawer_Extrude](https://user-images.githubusercontent.com/18192380/236580470-9f68e4e0-c6b0-4cb9-ad0a-2999d687c493.gif)
+GIF: 8 Rotating limbs via a single point
 
-GIF 2.1-4: GIF: Extruding parts, creating limbs.
+# 2-3 Limb Styles
 
-- Rotational reference
+You can set the style of a limb by setting its start/end vertice to a calculated Value.
+Styles are based on a vertex group. These are meant to be set manually, but can also be created/manipulated by other GeoNodes. See examples for this.
+The GeoNodes need to be set up to support multiple styles, which will also dictate the values to set the vertex group.
 
-Added in the 1.20 version, you can now add an object as a rotational reference in the geometry nodes-modifier.
-When one is added (and not placed at the world-zero), this will affect all the internal rotations of limbparts.
-For examples, see the biped-arms or the quad-walker. You can set the mesh-object itself as a reference, resulting in all limbs to rotate towards the origin.
+By using the 'CLD Style'-vertex group, you can switch between sets of collections. There is some slight amount of math involved:
+To use two style collections, the following values for 'CLD Style'-vertex between...
+... 0 and 0.5 will result in Collection 1
+... 0.5 to 1.0 will result in Collection 2.
+For three, these will range between 0-0.333-0.666. Basically every 1 divided by your max integrated styles.
 
-![2 1-7_RotationalReference](https://user-images.githubusercontent.com/18192380/236580513-06fd6bb9-3330-4268-b92d-dde10fe5e057.png)
+The amount of styles must be set up in the GeoNodes. Look for teal nodes, if they have a number related to style, change it accordingly. 
+The geonodes were not designed for programmers; style related numbers start at 1, not 0.
 
-Image 2.1-7: Rotational Reference in the Modifier Stack
+The used main 'CLD2 - Limb Generator' must contain multiple set up styles to support this feature.
 
-![2 1-8_CreatureLimbDrawer_RotationalObject](https://user-images.githubusercontent.com/18192380/236580521-82d2b21a-72ee-4df6-b170-913d948be3c7.gif)
+A few examples in the scene use style to switch between sets of collections.
+- Styles can also be randomized via modifiers. See the one example in the scene. But mostly they are meant to be set manually.
 
-GIF 2.1-8: GIF of rotational reference in action.
+GIF: 9 Setting limbstyles
 
-# 2.2 INTENDED WORKFLOW - Limbparts
+# 2-4 Basic GeoNode options
 
-The naming convention has been changed since the 1.08 version.
+The main modifier are the 'CLD2 - Limb Generators'
 
-![2 2-1_HierarchyNamingConvention](https://user-images.githubusercontent.com/18192380/236580543-3fe69bf5-0ea3-4022-9eb8-cef78e58f084.png)
+SCREENSHOT: 10 All available limb generators
 
-Image 2.2-1: Naming convention in hierarchy.
+Seed - Allows you to randomize the instance of each collection by a single value.
 
-LimbParts contains multiple collections, which are instanciated upon the edge control structure.
-Based on the length of an edge, either a mesh from the small, medium or large collection is instanced. The length at which each of these collection is used, can be controlled by two values in the GeometryNodes.
+Debug - Allows to render the limbs with a lowpoly version, showing the direction and orientation. Useful if performance is a concern.
 
-Additionally, for each of the three length-types, there are also LE- and LM-Collections.
+Realize Instances - Is required for further mesh transformations via modifiers/geonodes (like a mirror modifier below CLD). If you want to turn the CLD-instances into a mesh by applying it, this must be true, or you will not get resulting geometry when applying the modifier.
+Unchecked: improves performance but modifiers in the stack below CLD might not work.
 
-- LE/LimbEnd: Any edge in which one vert has no other connecting edge. These usually are spikes, fingers, toes and talons.
-- LM/LimbMiddle: Any edge in which the connected verts have further connected edges. These can be used for both limbs and the main body, when overlayered multiple times.
+Lots of Collections - These were added to quickly swap around collections to see the changes. The amount of collections / naming of these collections differs per example.
+Other 'CLD2 - Limb Generators' have tons of collections due to supporting basically having 'multiple CLD - Limb Generators' included the same time.
 
-Overall, each style uses six (possibly different) collections.
-Should a collection contain more than one mesh, each edge will chose one by a random seed. This seed can be adjusted in the modifier stack.
+# 2-5 Asset browser
 
-# 2.3 INTENDED WORKFLOW - Segments
+Use the asset browser to speed up your workflow and pre-create limbs that you want to use more often. 
 
-![2 3-1_Segment_Detail](https://user-images.githubusercontent.com/18192380/236580555-9bd9f1e7-4f80-4b40-83e5-2ad02d225e48.png)
+SCREENSHOT: 11 Asset Browser Add
 
-Image 2.3-1: Multiple Segments for LimbMid-Large (Organic style)
+Unlike previous versions, this requires more manual work before this is fully set up, depending on your choices.
 
-Segments are small meshes in the MidPart- and EndPart-collection. They are low-polygonal structures, sometimes with a mirror-modifier. Adjust the meshes for different results. 
-Note that the meshes are adjusted along their local y-axis, usually between -0.5 and 0.5. This y-range will ensure that the instance will be placed correctly along the edge control structure.
+The natural workflow now is:
+Drag one of the example modifiers, like the 'CLD2 - Limb Generator - Simple' onto the edge-mesh. 
+Then add one of the style collections of your choice via the asset browser to your scene.
+You will need to set up the collections in the modifier manually. This allows you to mix-and-match more quickly, but comes at the cost of initial set up time.
 
-The complexity of the control structure mesh can, based on your rig, take up performance when live-editing. Especially when using the remesh-modifier.
-Use simple shading for editing if performance is a problem.
+If you want to create your own preset, duplicate a 'CLD2 - Limb Generator' (most likely the 'Simple' or 'Basic' version) in the GeoNode Editor, then right click 'Mark as Asset'.
+Remove the Collection Group Inputs if you so choose, and place the Collections in the GeoNodes manually. When using your custom-version, all corresponding collections will be added to the scene as well!
 
-This tool is mainly intended as a base for sculpting and to prototype creatures in a similar style. Adapt it and the parts here to your needs.
+If you want to use a similar thumbnail like the ones in the plugin, you can use the collection 'Asset Browser Image Render' to render these. Rendering in the base scene is only enabled for the Asset Browser Image-Collection.
+Note that switching between different LimbGens will not work as expected due to internal naming schema. For safe result, remove the selected GeoNode first, then switch to the one you want to preview/render.
 
-# 2.4 INTENDED WORKFLOW - Asset browser
+GIF: 12 GeoNode Switch
 
-As seen in the initial GIF. 
-For easy usage, place this file in your Asset Bundle-folder. 
-- If you do not have one set, in the main menu bar, click on 'Edit > Preferences' and navigate to the 'File Paths'-tab. 
-- Scroll towards 'Asset Libraries', click the '+'. 
-Set the folder in your system that contains the 'Creature Limb Drawer'-blend-file.
+# 2-6 Example Content
 
-![2 4-1_Preferences-AssetBrowser_marked](https://user-images.githubusercontent.com/18192380/236580586-39d305d9-6fba-48f2-9c96-b69c83df9583.png)
+Besides technical examples, all previous collections of limbs are present (as collections only).
 
-Image 2.4-1: Preferences
-
-Afterwards, set an Area to Asset Browser. You should now be able to see the groups.
-
-![2 4-2_AssetBrowser](https://user-images.githubusercontent.com/18192380/236580618-645fe5fa-c64c-4093-99e2-efde06d6263c.png)
-
-Image 2.4-2: Asset browser in action
-
-# 2.5 INTENDED WORKFLOW - new set for the assetbrowser
-
-If you wish to create your own Limb-Set for the Asset Browser with a fitting thumbnail, follow this description.
-Use the seperate 'CreatureLimbDrawer_Your Style'-blend-file and rename it to your wishes. Keep _asset_bundle at the end. 
-The file should be contained within your set Asset Browser-folder. See 2.4.
-
-- 1
-Rename the 'Limb Gen (STYLE-NAME)'-Geometry Nodes to your liking. 
-Rename all subcollections to fit the new style name.
-
-- 2
-Modify the segment-meshes in the subcollections however you see fit. 
-Duplicate meshes inside the collection if you want a random selection for that length range of a limb.
-Set the materials of the limbs.
-
-- 3
-For a fitting thumbnail, just hit render.
-Render the image and save it.
-In the Asset Browser, find your new limbstyle, and set the preview to your rendered image. 
-
-# 2.6 INTENDED WORKFLOW - Geometry nodes
-
-The GeometryNodes for the overarching styles are simplified since Version 1.08.
-
-![2 6-1_SimplifiedGenericLimbGenerator](https://user-images.githubusercontent.com/18192380/236580639-dfdc0cb2-3b1c-4ab2-8341-cd4ce61c629f.png)
-
-Image 2.6-1: Simplified NodeGroup in GeometryNodes.
-
-Feel free to look into the groups (like Generic Creature Limb Generator) in case you want to manually adjust the behaviour of this tool.
-The 'delete geometry'-node at the beginning is there to prevent unforseen behaviour when using faces.
-Compare different styles to see how one can utilize the 'Generic Creature Limb Generator'-Node.
-
-- Seeds
-
-When using a creature limb style which has multiple meshes per LimbPart-Collection, you can utilize the Seeds for both MidLimbs and EndLimbs.
-
-![2 6-2_ModifierStack_Seeds](https://user-images.githubusercontent.com/18192380/236580650-e2f7128c-0998-4720-bd0c-5e31cfaf9207.png)
-
-Image 2.6-2: Adjustable seeds in the modifier stack.
-
-Change these in the modifier stack for immediate results or keyframe them and check through several iterations by using the timeline. 
-
-- XY-Scaling
-
-The XY-scalings for small, medium and large limb-parts can also be adjusted in the GeometryNodes for that style.
-Modify the vector-values, which act as min-size/max-size for both EndLimbs and MidLimbs. X, Y and Z are affecting the XY-Scale of small, medium and large limbs, respectively.
-
-![2 6-3_XYSCaling](https://user-images.githubusercontent.com/18192380/236580663-99ee4801-4320-48e6-9d9a-332d2ba9116c.png)
-
-Image 2.6-3: Adjustable scaling in GeometryNodes.
-
-The 'XY-Scale'-Value below these four vectors can be changed to make all limbs bigger/smaller at once. Some of the styles already have a slight number adjustments, play around with these to see the effect.
-
-- LimbLength
-
-The length at which a small limb turns into a medium or large limb is adjustable.
-
-![2 6-4_LimbLength](https://user-images.githubusercontent.com/18192380/236580673-e8d95e10-1e92-45b5-82ef-df3fe549b97e.png)
-
-Image 2.6-4: The LimbLength-values in GeometryNodes.
-
-Note that scaling the control structure and applying the scaling will cause the geometry instances to update, which will change the overall generated mesh.
-
-- LimbEnds in LimbMids
-
-There is an option to generate LimbEnds into every LimbMid. This was at first unintended, but also resulted into more randomness, especially when using organic shapes.
-This effect can be re-enabled by using the Boolean 'Generate LimbEnds in LimbMids' inside the GeometryNodes. 
-
-![2 6-5_GenerateLimbEndsInLimbMids](https://user-images.githubusercontent.com/18192380/236580681-8d798855-45a5-4871-b6c5-b90465916636.png)
-
-Image 2.6-5: The marked Bool-option in GeometryNodes.
-
-- Polishing the mesh
-
-As the geometry nodes can create clipping meshes, the remesh modifier might help to reduce complexity. 
-Applying a remesh modifier after the geometry nodes modifier on the control structure will create a smoother surface. Apply in order when you want to generate UVs or bake the texture.
-By my experience, voxel-based remesh tends to have smoothest results - you can also try to use Sharp with an level of about 8 and uncheck the 'remove disconnected' - this can create more worn-down results, especially at parts where the LimbParts overlap. 
-When using a remesh, your mesh will lose the material data from the instances. When using only a single material, using an new GeoNodes-Setup with only a 'Set Material'-Node might fix this.
-
-Save your progress regularily. 
-
-# 2.7 ADVANCED WORKFLOW - Geometry Nodes
-
-With the 1.26 version, the geometry nodes can also use named attributes for rotation. 
-Other GeoNodes, that are in the modifier stack above, can set the named attribute 'LimbRot', which will then automatically overwrite the rotation target for the Limb Gen-GeoNodes.
-In the main file you can find a simple example. This can be utilized for more complex creations.
-
-# 3 CONTENT
-
-This scene currently contains five different style of limbs: 
-Switch between those in Object Mode and using 'shift + 1 to 6' to easily preview these. 
-
-![3 1-1_DifferentStyles](https://user-images.githubusercontent.com/18192380/236580695-374ef105-b828-490d-90a6-c5cae6c962d1.png)
-
-Image 3.1-1: Different Styles Showcase, as shown in order below
-
-The current official styles are:
-
-- Mecha: technical, blocky parts.
-
-![3 1-2_Mecha](https://user-images.githubusercontent.com/18192380/236580701-1c5d9790-a99a-4019-b152-2c4185ac8ba7.png)
-
-Image 3.1-2: Mecha Style Thumbnail
-
+Collections contain Limbs for:
 - Organic: a selection of shell-like parts.
-
-![3 1-3_Organic](https://user-images.githubusercontent.com/18192380/236580726-6644324a-4405-474c-a959-bd77e5898a8b.png)
-
-Image 3.1-3: Organic Style Thumbnail
-
-- CyberneticSaw: edgy technical parts.
-
-![3 1-4_CyberneticSaw](https://user-images.githubusercontent.com/18192380/236580732-ac521375-3214-4e61-87b8-7a1fa4cffb24.png)
-
-Image 3.1-4: CyberneticSaw Style Thumbnail
-
-- StylizedRoot: lowpoly root-like structures.
-
-![3 1-5_StylizedRoot](https://user-images.githubusercontent.com/18192380/236580743-d407def5-e485-4eb5-9803-491a07671939.png)
-
-Image 3.1-5: StylizedRoot Style Thumbnail
-
-- Prosthesis: an experimental, very simple style for limbs. Might work better when not overlayered.
-
-![3 1-6_Prosthesis](https://user-images.githubusercontent.com/18192380/236580748-20be9443-8d29-410c-9ee2-c635c99afc93.png)
-
-Image 3.1-6: Prosthesis Style Thumbnail
-
+- Mecha: technical, blocky parts.
+- Cybernetic: edgy technical parts.
+- Prosthesis: experimental, very simple style for limbs. Might work better when not overlayered.
+- Root: lowpoly root-like structures.
 - Generic: an style to adapt to your liking or to use as a basis. Not shown in the above setup.
 
-![3 1-7_Generic](https://user-images.githubusercontent.com/18192380/236580756-7e40c3a3-2b5a-4723-9378-b4522766132b.png)
+SCREENSHOTS: Available limb generator modifiers
 
-Image 3.1-7: Generic Style Thumbnail
+These used to be separate modifiers, marked as assets. They are still inside the file. If you want to reuse these modifiers, you need to mark them as assets via right click on the GeometryNode-modifier. 
 
-Each can be used by setting the respective GeometryNodes modifier to one of the 'Limb Gen (STYLE)'.
+# 2-7 Shader
 
-These control structure meshes are found in every style collection. These are duplicates and only differ in which geometry node setup is used. These meshes do not have a set material themselves.
+This plugin does not focus on shaders, as such, these are held very simple. The geonodes save their limblength and use it to change color for some of the shader parts. 
+Realize instance must be enabled for this to work.
 
-The instanced LimbPart-meshes have a simple ambient occlusion based material applied to them. These require rendering in cycles for correct display.
-Consider using a 'set material'-node in the GeometryNodes after the 'Generic Creature Limb Generator'-node, if you quickly want to swap out the material for the whole generated mesh.
+GIF: 13 Shader Values
 
-# 5 CURRENT ISSUES AND LIMITATIONS
+Important changes since last version:
 
-Many issues have been resolved since the 1.08 version. 
+- Shortened readme.
+- Reworked limb creation from scratch, resulting in much more stable results.
+	- Endpoint detection improved.
+	- Order of limbs can be forced via vertex group.
+	- Rotation of limbs can be changed via modifiers.
+	- Allows you to switch between different collection sets via vertex group.
+- GeoNodes and subnodes are named more precisely.
+- Used subnode for storing the attribute names in GeoNodes
+- Removed the 'create limbends in limbmids'-feature. If you want a similar effect, you need to modify the geometry nodes. 
+- Reworked different styles from previous version into the new system.
+- Shaders for old content has been slightly changed. 
+- Added a 'Instances from Edges'-node, which is a feature-reduced version of this system as a separate file. It offers the options of the 'Instances from Points'-node (on which it is based) + allows you to chose where to spawn along the edge. If you don't need the complexity of CLD, use this instead.
 
-- LIVE EDITING PERFORMANCE
-
-Based on the power of your rig, you might want to stay in simple shaded for editing.
-The base scene contains a deactivated remesh.
-Editing the meshes of LimbMid and LimbEnd can require more perfomance when remesh is activated. If you only want to change the limbs, perhaps consider disconnecting the final geometry nodes to skip recalculations until your changes to the Limb-Meshes are finished.
-
-- RIGGING
-
-This tool only creates instanced geometry. Applying the modifiers of the control structure is recommended. You could use the skin modifier on the control structure with reduced vertices to create a base rig. 
-
-# 6 SUGGESTIONS AND FUTURE
-You can contact me in my discord server (https://discord.gg/BJr6rT3Cer) for suggestions, troubleshooting and/or creations! 
+Thanks for checking out my add-on - after a long time developing, CLD2 now contains all features I wanted to implement and can be controlled fully!
+Feel free to look into the GeoNodes and adapt them to your needs.
+For further questions on usage or how the GeoNodes work, ask me in my discord server: https://discord.gg/BJr6rT3Cer - also feel free to share your creations here :)
